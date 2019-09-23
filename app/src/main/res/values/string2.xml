@@ -8,4 +8,16 @@
     <string name="btn4" translatable="false"> reset </string>
 
 
+
+    <string name="inputRMB" translatable="false"> imputRMB </string>
+    <string name="cash" translatable="false"> 0 </string>
+
+    <string name="doller" translatable="false"> doller </string>
+    <string name="euro" translatable="false"> euro</string>
+    <string name="won" translatable="false"> won  </string>
+
+
+
+
+
 </resources>

@@ -130,14 +130,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btn2_2" />
 
     <View
-        android:id="@+id/divider2"
-        android:layout_width="1dp"
-        android:layout_height="715dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="-432dp"
-        tools:layout_editor_absoluteY="8dp" />
-
-    <View
         android:id="@+id/divider3"
         android:layout_width="2dp"
         android:layout_height="300dp"
