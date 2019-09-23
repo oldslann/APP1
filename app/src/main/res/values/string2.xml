@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="score" translatable="false"> score </string>
+    <string name="scoren" translatable="false"> 0</string>
+    <string name="btn1" translatable="false"> + 3 point </string>
+    <string name="btn2" translatable="false"> + 2 point </string>
+    <string name="btn3" translatable="false"> + 1 point </string>
+    <string name="btn4" translatable="false"> reset </string>
+
+
+</resources>

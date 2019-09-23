@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">APP1</string>
     <string name="s">  happy birthday</string>
+
+    <string name="cenc"> 0 </string>
+    <string name="fahc"> 0 </string>
+
+    <string name="cen"> cen </string>
+    <string name="fah"> fah </string>
+
+
 </resources>

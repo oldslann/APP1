@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">APP1</string>
     <string name="s">江主席万寿无疆</string>
+    <string name="cenc">0</string>
+    <string name="fahc">0</string>
+    <string name="cen">摄氏度</string>
+    <string name="fah">华氏度</string>
 </resources>

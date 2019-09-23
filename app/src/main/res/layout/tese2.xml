@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/cen"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/cen"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/cenc"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/cenc"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/fah"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/fah"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/fahc"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/fahc"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cen to fah" />
+</LinearLayout>
