@@ -1,10 +1,13 @@
 package com.example.app1;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -132,6 +135,29 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
 
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.menu_1,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.m1_1)
+        {
+            Newo();
+        }
+            ;
+        super.onOptionsItemSelected(item);
+
+
+
+        return true;
     }
 }
 
