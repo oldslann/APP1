@@ -2,8 +2,11 @@ package com.example.app1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +65,14 @@ public class Ratio extends AppCompatActivity {
             config.putExtra("wr", r3);
             Log.i(TAG, "dr=  : " + r1);
             setResult(1, config);
+
+
+            SharedPreferences sp=getSharedPreferences("myrate", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putFloat("dr",(float) r1);
+            editor.putFloat("er",(float) r2);
+            editor.putFloat("wr",(float) r3);
+            editor.apply();
             finish();
         }
 
