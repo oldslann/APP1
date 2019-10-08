@@ -1,8 +1,10 @@
 package com.example.app1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 public class Main2Activity extends AppCompatActivity  implements View.OnClickListener{
 
 
+    private  static String TAG="main";
     TextView t1;
     int i;
     @Override
@@ -119,6 +122,7 @@ public class Main2Activity extends AppCompatActivity  implements View.OnClickLis
 
     public void onClick(View view) {
 
+
     }
 
     public void onClick1(View view,int j) {
@@ -128,6 +132,8 @@ public class Main2Activity extends AppCompatActivity  implements View.OnClickLis
         t1.setText(String.valueOf(i));
 
     }
+
+
     public void onClick2(View view,int j) {
         t1=findViewById(R.id.score2);;
         i=Integer.valueOf(t1.getText().toString());
@@ -135,4 +141,35 @@ public class Main2Activity extends AppCompatActivity  implements View.OnClickLis
         t1.setText(String.valueOf(i));
 
     }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, " onSaveInstanceState  " );
+        String scorea=((TextView)findViewById(R.id.score1)).getText().toString();
+        String scoreb=((TextView)findViewById(R.id.score2)).getText().toString();
+        outState.putString("sc1",scorea);
+        outState.putString("sc2",scoreb);
+
+
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Log.i(TAG, " onRestoreInstanceState  " );
+        String scorea=savedInstanceState.getString("sc1");
+        String scoreb=savedInstanceState.getString("sc2");
+        ((TextView)findViewById(R.id.score1)).setText(scorea);
+        ((TextView)findViewById(R.id.score2)).setText(scoreb);
+
+
+
+    }
+
+
 }
