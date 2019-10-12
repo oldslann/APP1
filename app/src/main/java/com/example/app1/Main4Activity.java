@@ -63,7 +63,7 @@ public class Main4Activity extends ListActivity implements Runnable{
 
 
         Log.i(TAG, "run=  .......... " );
-        for(int i=1;i<6;i++)
+        for(int i=1;i<2;i++)
         {
 
             Log.i(TAG, "run i=  "+i );
