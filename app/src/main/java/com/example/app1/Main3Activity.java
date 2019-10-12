@@ -55,10 +55,6 @@ public class Main3Activity extends AppCompatActivity implements Runnable{
 
 
 
-
-
-
-
         SharedPreferences sharedPreferences=getSharedPreferences("myrate", Activity.MODE_PRIVATE);
         PreferenceManager.getDefaultSharedPreferences(this);
         r1=sharedPreferences.getFloat("dr",0.0f);
@@ -206,7 +202,7 @@ public class Main3Activity extends AppCompatActivity implements Runnable{
 
         getMenuInflater().inflate(R.menu.menu_1,menu);
         return true;
-    }
+    }//菜单
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -220,7 +216,7 @@ public class Main3Activity extends AppCompatActivity implements Runnable{
 
 
         return true;
-    }
+    }//菜单
 
 
 
