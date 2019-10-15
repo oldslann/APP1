@@ -1,8 +1,10 @@
 package com.example.app1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,11 +28,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Main5Activity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener {
+public class Main5Activity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private  static String TAG="main";
     Handler handler;
     ListView listView;
+    MyAdapter myAdapter;
+    ArrayList<HashMap<String, String>> listItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +48,16 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
                     listView=(ListView)findViewById(R.id.listview1);
 
 
-                    ArrayList<HashMap<String, String>> listItems = (ArrayList<HashMap<String, String>>) msg.obj;
+                    listItems = (ArrayList<HashMap<String, String>>) msg.obj;
 
-                    MyAdapter myAdapter = new MyAdapter(Main5Activity.this,
+                    myAdapter = new MyAdapter(Main5Activity.this,
                             R.layout.list_item,
                             listItems);
                     Log.i(TAG, "listView");
                     listView.setAdapter(myAdapter);
+                    listView.setEmptyView(findViewById(R.id.nodata));
                     listView.setOnItemClickListener(Main5Activity.this);
-
-
+                    listView.setOnItemLongClickListener(Main5Activity.this);
 
 
                 }
@@ -84,7 +88,7 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
                     ListAdapter adapter=new ArrayAdapter<String>(
                             Main5Activity.this,
                             android.R.layout.simple_list_item_1,
-                            list
+                            lista
                     );
                     Log.i(TAG, "listView");
                     listView.setAdapter(adapter);
@@ -200,5 +204,25 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
         Log.i(TAG, "onItemClick: title2=" + title2);
         Log.i(TAG, "onItemClick: detail2=" + detail2);
         */
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示")
+        .setMessage("是否删除当前数据")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.i(TAG,"longclick");
+
+                        listItems.remove(position);
+                        myAdapter.notifyDataSetChanged();//更新适配器
+                    }
+                })
+                .setNegativeButton("否",null);
+        builder.create().show();
+        return true;
     }
 }
