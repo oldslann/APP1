@@ -6,13 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -35,10 +41,19 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
     ListView listView;
     MyAdapter myAdapter;
     ArrayList<HashMap<String, String>> listItems;
+    private SensorManager sensorManager;
+    private ImageView img;
+    private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
+
+        sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);//传感器
+        vibrator=(Vibrator)getSystemService(VIBRATOR_SERVICE);
+
+
 
 
         handler = new Handler() {
@@ -98,6 +113,15 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
                 * */
 
                 super.handleMessage(msg);
+
+                if (msg.what==100)//摇一摇变换图像
+                {
+                    img=(ImageView) findViewById(R.id.imgha);
+                    img.setImageResource(R.mipmap.shake);
+
+                }
+
+
             }
         };
 
@@ -225,4 +249,57 @@ public class Main5Activity extends AppCompatActivity implements Runnable, Adapte
         builder.create().show();
         return true;
     }
+
+
+
+    //注册监听器
+    @Override
+    protected void onResume() {
+        if (sensorManager!=null)
+        {
+            sensorManager.registerListener(sensorEventListener,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        super.onResume();
+    }
+
+    //取消监听器
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sensorManager!=null)
+        {
+            sensorManager.unregisterListener(sensorEventListener);
+        }
+    }
+
+    //传感器对象
+    private  SensorEventListener sensorEventListener=new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            float []values= sensorEvent.values;
+            float x=values[0];//不同轴上的加速度
+            float y=values[1];
+            float z=values[2];
+            int medumValue=10;
+            if (Math.abs(x)>medumValue||Math.abs(y)>medumValue||Math.abs(z)>medumValue)
+            {
+                vibrator.vibrate(200);
+                Message msg=new Message();
+                msg.what= 100;
+                handler.sendMessage(msg);
+
+            }
+
+
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
+
+
+
+
 }
