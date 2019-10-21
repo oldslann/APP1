@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Main6Activity"></activity>
+        <activity android:name=".dataratio"></activity>
+        <activity android:name=".Main6Activity" />
         <activity android:name=".Ratio2" />
         <activity android:name=".Ratio" />
         <activity android:name=".Main5Activity">
